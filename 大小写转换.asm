@@ -6,36 +6,37 @@
 ;and(按位与)两个数需要两个都是1结果才是1
 ;or(按位或)两个数只要一个是1结果就是1
 
-assume cs:code
+assume ds:data,cs:code
 
 data segment
-     db 'BaSiC'
-     db 'iNfOrMaTiOn'
-data ends
+     db 'SKjsdisKiO'
+     db 'dsdwekJSIE'
+data ends           
 
-code segment
+code segment 
+    
 start:
-     mov ax,data    
-     mov ds,ax;设置ds->data
+     mov ax,data
+     mov ds,ax;设置数据段
      
      mov bx,0
-     mov cx,5 ;先转换BaSiC 
+     mov cx,10
      
-   s:mov al,[bx];al转换后送回存储器
-     and al,11011111B;将al的ASCII码的第5位置为0,变为大写字母
-     mov [bx],al
-     inc bx
-     loop s 
+    s:
+     mov al,ds:[bx]
+     and al,11011111b;//按位与，将第五位转换为0(转大写)
+     mov ds:[bx],al
      
-     mov bx,5
-     mov cx,11
-  s0:mov al,[bx];al转换后送回存储器
-     or  al,00100000B;将al的ASCII码的第5位置为1,变为小写字母
-     mov [bx],al 
+     mov al,ds:[bx+10]
+     or al,00100000b;//按位或，将第五位转换为1(转小写)
+     mov ds:[bx+10],al
      
      inc bx
-     loop s0
+     loop s
+     
+     mov ax,4c00h
+     int 21h
      
 code ends
 
-end start
+end  start
