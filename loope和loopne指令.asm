@@ -1,7 +1,7 @@
 ;loope/loopz指令 
 ;loope和loopne就是比loop多了一个测试ZF标志位的东西
-;loope是只有在CX不等于0和ZF=1(结果相等)的情况下才执行循环
-;loopne是只有在CX不等于0和ZF=0(结果不等)的情况下才执行循环
+;loope是只有在CX不等于0或ZF=1(cmp结果相等)的情况下才执行循环
+;loopne是只有在CX不等于0或ZF=0(cmp结果不等)的情况下才执行循环
 
 assume ds:data,cs:code
    
